@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+    <!-- <ion-toolbar>
+      <ion-title>
+          Tab 1
+      </ion-title>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div id="app_content" class="container-fluid no-padding" style="overflow-x: hidden;overflow-y: scroll;height: 100vh; color: white; background-color: white;">
+        <div class="col-xs-12 no-padding" id="top-bar" style="
+          background-color: #f9ddd1;
+          height: 60vw;">
+            <div class="center-vertical col-xs-12" style="height:40vw">
+                <span style="font-weight: bolder; color: #414141; font-size: 7vw;">Pilih Menu</span>
+            </div>
+            <div class="col-xs-offset-1 col-xs-5 center-element no-padding" style="height: 15vw; z-index: 2; padding: 0vw 1vw !important">
+                <div class="center-element" style="width: 80vw; height: 12vw; background-color: #414141;  border-radius: 6vw; box-shadow: 0px 2px 4px 4px rgba(0, 0, 0, 0.05);">
+                    <span style="font-size: 4vw; color: white; font-weight: bold;">Delivery</span>
+                </div>
+            </div>
+            <div class="col-xs-5 center-element no-padding" style="height: 15vw; z-index: 2; padding: 0vw 1vw !important">
+                <div class="center-element" style="width: 80vw; height: 12vw; background-color: white;  border-radius: 6vw; box-shadow: 0px 2px 4px 4px rgba(0, 0, 0, 0.05);">
+                    <span style="font-size: 4vw; color:  #414141; font-weight: bold;">Pick Up</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 no-padding" id="content" style="
+          background-color:#e6e6dc;
+          margin-top: -12vw;
+          height: auto;
+          border-radius: 7vw 7vw 0vw 0vw;
+          width: 100vw;
+          padding-top: 5vw;
+          padding-bottom: 20vw;">
+            <div class="col-xs-12 no-padding" *ngIf="products" style="height: auto; color:  #414141; font-size: 3vw; font-weight: bold;">
+
+                <div class="col-xs-12" style="margin-top: 5vw;">
+                    <span style="font-size: 5vw;">Your Favourite</span>
+                </div>
+                <div *ngFor="let product of products.data" class="col-xs-12" style="height: 30vw;">
+                    <div class="col-xs-12 no-padding" style="padding:5vw 0vw !important">
+                        <div class="col-xs-3 center-vertical">
+                            <img style="height: 30vw; object-fit: cover;" src="{{product.img}}">
+                        </div>
+                        <div class="col-xs-6 center-vertical no-padding" style="text-align: start;padding-left: 2vw !important; height: 30vw;">
+                            <div>
+                                <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.name}}</span><br>
+                                <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.price | currency:"Rp. "}}</span><br>
+                                <span style="color:  #414141; font-size: 3vw; font-weight: bold;">Aku pesan {{product.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-3" style="height: 30vw;">
+                            <div class="col-xs-12 center-vertical" style="height: 10vw; margin-top: 5vw;">
+                                <ion-icon style="font-size: 10vw;" name="heart-outline"></ion-icon>
+                            </div>
+                            <div class="col-xs-12 center-vertical" style="height: 10;">
+                                <div class="center-element" style="height: 8vw; width: 8vw; background-color: #414141; border-radius: 2vw;">
+                                    <ion-icon style="color: white;" name="add-outline"></ion-icon>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-12" style="margin-top: 10vw;">
+                    <span style="font-size: 5vw;">Iced Coffee</span>
+                </div>
+                <div *ngFor="let product of products.data" class="col-xs-12" style="height: 30vw;">
+                    <div class="col-xs-12 no-padding" style="padding:5vw 0vw !important">
+                        <div class="col-xs-3 center-vertical">
+                            <img style="height: 30vw; object-fit: cover;" src="{{product.img}}">
+                        </div>
+                        <div class="col-xs-6 center-vertical no-padding" style="text-align: start;padding-left: 2vw !important; height: 30vw;">
+                            <div>
+                                <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.name}}</span><br>
+                                <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.price | currency:"Rp. "}}</span><br>
+                                <span style="color:  #414141; font-size: 3vw; font-weight: bold;">Aku pesan {{product.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-3" style="height: 30vw;">
+                            <div class="col-xs-12 center-vertical" style="height: 10vw; margin-top: 5vw;">
+                                <ion-icon style="font-size: 10vw;" name="heart-outline"></ion-icon>
+                            </div>
+                            <div class="col-xs-12 center-vertical" style="height: 10;">
+                                <div class="center-element" style="height: 8vw; width: 8vw; background-color: #414141; border-radius: 2vw;">
+                                    <ion-icon style="color: white;" name="add-outline"></ion-icon>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- <ion-header collapse="condense ">
+      <ion-toolbar>
+          <ion-title size="large ">Tab A</ion-title>
+      </ion-toolbar>
+  </ion-header>
+
+  <app-explore-container name="Tab A page "></app-explore-container> -->
+</ion-content>

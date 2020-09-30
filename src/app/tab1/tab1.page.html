@@ -1,0 +1,216 @@
+<ion-header [translucent]="true">
+    <!-- <ion-toolbar>
+        <ion-title>
+            Tab 1
+        </ion-title>
+    </ion-toolbar> -->
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div id="app_content" class="container-fluid no-padding" [ngStyle]="pesan?{'overflow-y': 'hidden'} : {'overflow-y': 'scroll'}" style="overflow-x: hidden;height: 100vh; color: white; background-color: white;">
+        <div class="col-xs-12 no-padding" id="top-bar" style="
+            background-color: #f9ddd1;
+            height: 60vw;">
+
+            <div id="top" class="col-xs-12 no-padding center-vertical" style="height: 20vw; padding: 2vw 2vw 0vw 2vw !important">
+                <div class="col-xs-2 no-padding" style="height: 12vw; padding-left: 3vw !important;">
+                    <div style="width: 12vw; height: 12vw; border-radius: 50%; background-color: #a09194;"></div>
+                </div>
+                <div class="col-xs-5" style="font-size: 4vw; color: black;">
+                    <span>Halo <span style="font-weight: bold;">Niko!</span></span>
+                </div>
+                <div class="col-xs-offset-3 col-xs-2 no-padding center-vertical" style="height: 15vw; padding-right: 1vw; text-align: right;">
+                    <ion-icon style="font-size: 10vw; color: grey;" name="notifications-outline"></ion-icon>
+                </div>
+            </div>
+            <div class="col-xs-12" style="height:20vw">
+                <img style="height: 20vw;" src="../assets/img/janji-jiwa.png">
+            </div>
+            <div class="col-xs-12 center-element" style="height: 15vw; z-index: 2;">
+                <div (click)="getPesan()" class="center-element" style="width: 80vw; height: 12vw; background-color: #414141;  border-radius: 6vw;">
+                    <span style="font-size: 4vw; color: white; font-weight: bold;">Pesan Sekarang!</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-12 no-padding" id="content" style="
+            background-color: white;
+            margin-top: -12vw;
+            height: 100vh;
+            border-radius: 7vw 7vw 0vw 0vw;
+            width: 100vw;
+            padding-top: 5vw;">
+            <div *ngIf="data">
+                <ion-slides [options]="slideOpts" [pager]="true">
+                    <ion-slide *ngFor="let product of data.data">
+                        <!-- <div style="height: 40vw; width: 72vw; background-image: url({{product.img}});
+                        background-position: center center;
+                        background-size: cover;
+                        background-repeat: no-repeat;">
+                        </div> -->
+                        <div style="height: 40vw; width: 72vw; border-radius: 5vw;  box-shadow: 0px 1px 14px -8px #979797;">
+                            <img style="border-radius: 5vw;height: 40vw; width: 72vw; object-fit: cover;" src="{{product.img}}" onerror="this.onerror=null;this.src='../assets/img/error.jpg';">
+                        </div>
+                    </ion-slide>
+                </ion-slides>
+            </div>
+            <style>
+                .tabProd {
+                    text-align: center;
+                    height: 7vw;
+                }
+                
+                .active-tab {
+                    border-bottom: 3px #414141 solid;
+                }
+            </style>
+            <div class="col-xs-12 no-padding" style="color:  #414141; font-size: 3.5vw; font-weight: bold; height: 10vw; margin-top: 5vw;">
+                <div class="col-xs-20 no-padding tabProd active-tab" id="tab1" (click)="navigation('tab1')">
+                    <span>Populer</span>
+                </div>
+                <div class="col-xs-20 no-padding tabProd" id="tab2" (click)="navigation('tab2')">
+                    <span>Untukmu</span>
+                </div>
+                <div class="col-xs-20 no-padding tabProd" id="tab3" (click)="navigation('tab3')">
+                    <span>Kopi</span>
+                </div>
+                <div class="col-xs-20 no-padding tabProd" id="tab4" (click)="navigation('tab4')">
+                    <span>Teh</span>
+                </div>
+                <div class="col-xs-20 no-padding tabProd" id="tab5" (click)="navigation('tab5')">
+                    <span>Snack</span>
+                </div>
+            </div>
+            <div class="col-xs-12 no-padding" *ngIf="products" style="height: 60vw; color:  #414141; font-size: 3vw; font-weight: bold;">
+                <ion-slides [options]="slideConf" style="height: 65vw;">
+                    <ion-slide *ngFor="let product of products.data">
+                        <!-- <div style="height: 40vw; width: 72vw; background-image: url({{product.img}});
+                        background-position: center center;
+                        background-size: cover;
+                        background-repeat: no-repeat;">
+                        </div> -->
+                        <div style="height: 55vw; width: 35vw; border-radius: 5vw;  box-shadow: 0px 1px 14px -8px #979797;">
+                            <img style="border-radius: 5vw 5vw 0vw 0vw;height: 80%; width: 72vw; object-fit: cover;" src="{{product.img}}">
+                            <div class="col-xs-12 no-padding" style="height: 20%; line-height: 0.7;">
+                                <div class="col-xs-9 no-padding" style="text-align: start;padding-left: 2vw !important;">
+                                    <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.name}}</span><br>
+                                    <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.price | currency:"Rp. "}}</span>
+                                </div>
+                                <div class="col-xs-3 no-padding">
+                                    <ion-icon name="heart-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <div class="center-element" style="height: 8vw; width: 8vw; background-color: #414141; border-radius: 2vw; position: absolute; bottom:2vw; right: -1vw;">
+                                <ion-icon style="color: white;" name="add-outline"></ion-icon>
+                            </div>
+                        </div>
+                    </ion-slide>
+                </ion-slides>
+            </div>
+
+        </div>
+
+        <div *ngIf="pesan" id="app_content" class="container-fluid no-padding" style="
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw; 
+            z-index: 3;
+            position: absolute;
+            bottom: 0;">
+            <div (click)="closePesan()" style="width: 100%; height: 10%; background-color: none;"></div>
+            <div style="width: 100%; height: 75%; background-color: #e6e6dc; border-radius: 10vw 10vw 0vw 0vw; overflow-y: scroll; overflow-x: hidden;">
+                <div *ngIf="purchased">
+                    <div *ngFor="let product of purchased.data" class="col-xs-12" style="height: auto; color:  #414141;">
+                        <div class="col-xs-12 no-padding">
+                            <div class="col-xs-3 center-vertical">
+                                <img style="height: 30vw; object-fit: cover;" src="{{product.img}}" (error)="changeSource($event)">
+                            </div>
+                            <div class="col-xs-9 center-vertical no-padding" style="text-align: start;padding-left: 2vw !important; height: 30vw;">
+                                <div>
+                                    <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.name}}</span><br>
+                                    <span style="color:  #414141; font-size: 3vw; font-weight: bold;">{{product.price | currency:"Rp. "}}</span><br>
+                                    <span style="color:  #414141; font-size: 3vw; font-weight: bold;">Aku pesan {{product.name}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" style="border-bottom: 1px solid black;"></div>
+                            <div class="col-xs-12" style="margin-top: 5vw;">
+                                <span style="font-size: 5vw; font-weight: bolder;">Additional Topping:</span>
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 2vw;">
+                                <form>
+                                    <div *ngFor="let object of topping">
+                                        <input type="checkbox"> {{object.name}}
+                                        <span style="float: right;">{{object.harga}}</span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 5vw;">
+                                <span style="font-size: 5vw; font-weight: bolder;">Sugar Level:</span>
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 2vw;">
+                                <form>
+                                    <div *ngFor="let object of sugar">
+                                        <input type="radio" name="sugar"> {{object.name}}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 5vw;">
+                                <span style="font-size: 5vw; font-weight: bolder;">Ice Level:</span>
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 2vw;">
+                                <form>
+                                    <div *ngFor="let object of ice">
+                                        <input type="radio" name="ice"> {{object.name}}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 5vw;">
+                                <span style="font-size: 5vw; font-weight: bolder;">Special Instruction</span>
+                            </div>
+                            <div class="col-xs-12" style="width: 90vw; padding:3vw">
+                                <div class="col-xs-12 no-padding" style="border: 1px solid grey;height: 10vw;border-radius: 2vw; display: flex; align-items: center; justify-content: center; background-color: white;">
+                                    <input type="text" style="font-size: 4vw;width:95%; height:95%;border: none;color: grey;" placeholder="Add Instruction" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 5vw;">
+                                <span style="font-size: 5vw; font-weight: bolder;">Qty</span>
+                            </div>
+                            <div class="col-xs-12 text-center" style="margin: 3vw 0vw;">
+                                <div class="col-xs-4 no-padding text-center" style="display: inline-block;  background-color: white; border-radius: 2vw;">
+                                    <div (click)="nav('kurang')" class="col-xs-2 no-padding" style="border-top: grey solid 1px;border-bottom: grey solid 1px;border-left: grey solid 1px; height: 8vw; border-radius: 2vw 0vw 0vw 2vw; line-height: 1;display: flex;justify-content: center;align-items: center;">
+                                        <span style="color: #414141; font-size: 5vw;">-</span>
+                                    </div>
+                                    <div class="col-xs-8 no-padding" style="border: grey solid 1px; height: 8vw; display: flex;justify-content: center;align-items: center;">
+                                        <span style="color: #414141; font-size: 3.5vw;">{{count}}</span>
+                                    </div>
+                                    <div (click)="nav('tambah')" class="col-xs-2 no-padding" style="border-top: grey solid 1px;border-bottom: grey solid 1px;border-right: grey solid 1px; height: 8vw; border-radius: 0vw 2vw 2vw 0vw; display: flex;justify-content: center;align-items: center;">
+                                        <span style="color: #414141; font-size: 5vw;">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%; height: 15%; background-color: white; line-height: 1; font-weight: bolder;">
+                <div class="col-xs-6" style="height: 15vw; z-index: 2;">
+                    <span style="font-size: 3vw; color: #414141;">Price</span><br>
+                    <span style="font-size: 5vw; color: #414141;">{{price | currency:'Rp. '}}</span>
+                </div>
+                <div class="col-xs-6 center-element" style="height: 15vw; z-index: 2;">
+                    <div (click)="getPesan()" class="center-element" style="width: 80vw; height: 12vw; background-color: #414141;  border-radius: 6vw;">
+                        <span style="font-size: 4vw; color: white; font-weight: bold;">Pesan Sekarang!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <ion-header collapse="condense ">
+        <ion-toolbar>
+            <ion-title size="large ">Tab A</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <app-explore-container name="Tab A page "></app-explore-container> -->
+</ion-content>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">JJ-TP</string>
+    <string name="title_activity_main">JJ-TP</string>
+    <string name="package_name">com.eanovate.app</string>
+    <string name="custom_url_scheme">com.eanovate.app</string>
+</resources>

@@ -1,0 +1,7 @@
+{
+  "name": "JJ-TP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
